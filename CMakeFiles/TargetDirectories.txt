@@ -1,0 +1,3 @@
+/Users/shadowlegend/zaman/computer-graphic/menu/CMakeFiles/rebuild_cache.dir
+/Users/shadowlegend/zaman/computer-graphic/menu/CMakeFiles/edit_cache.dir
+/Users/shadowlegend/zaman/computer-graphic/menu/CMakeFiles/menu.dir

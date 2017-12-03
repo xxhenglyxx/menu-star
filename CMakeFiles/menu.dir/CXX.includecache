@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/shadowlegend/zaman/computer-graphic/menu/src/basic_draw.h
+OpenGL/gl.h
+-
+iostream
+-
+
+/Users/shadowlegend/zaman/computer-graphic/menu/src/main.cpp
+iostream
+-
+string
+-
+OpenGL/gl.h
+-
+GLUT/glut.h
+-
+basic_draw.h
+/Users/shadowlegend/zaman/computer-graphic/menu/src/basic_draw.h
+math_shape.h
+/Users/shadowlegend/zaman/computer-graphic/menu/src/math_shape.h
+menu.h
+/Users/shadowlegend/zaman/computer-graphic/menu/src/menu.h
+
+/Users/shadowlegend/zaman/computer-graphic/menu/src/math_shape.h
+OpenGl/gl.h
+-
+math.h
+-
+
+/Users/shadowlegend/zaman/computer-graphic/menu/src/menu.h
+string
+-
+iostream
+-
+
