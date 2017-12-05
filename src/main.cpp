@@ -9,149 +9,32 @@
 #include "math_shape.h"
 #include "menu.h"
 
-int shape = 0; // denote 0 for sine wave, 1 for star
-
-void drawLinei (
-
-    const int p1,
-    const int p2,
-    const int p3,
-    const int p4
-
-) {
-
-    glBegin ( GL_LINES );
-
-        glVertex2i ( p1, p2 );
-        glVertex2i ( p3, p4 );
-
-    glEnd ();
-
-    glFlush ();
-
-}
-
-void axisMenu ( int value ) {
-
-    switch ( value ) {
-
-        case 1: {
-
-            drawGrid ( 800, 800, 10 );
-            break;
-
-        }
-
-        case 2: {
-
-            drawGrid ( 800, 800, 10, .0, .0, .0 );
-            break;
-
-        }
-
-        default: break;
-
-    }
-
-}
-
-void backgroundMenu ( int value ) {
-
-    switch ( value ) {
-
-        case 3: {
-
-            glClearColor ( .5f, .0f, .0f, .8f );
-            glClear ( GL_COLOR_BUFFER_BIT );
-            glFlush ();
-
-            drawGrid ( 800, 800, 10 );
-            drawSineWave ();
-
-            break;
-
-        }
-
-        case 4: {
-
-            glClearColor ( .0, .0, .0, 1 );
-            glClear ( GL_COLOR_BUFFER_BIT );
-            glFlush ();
-
-            drawGrid ( 800, 800, 10 );
-            drawSineWave ();
-
-            break;
-
-        }
-
-        default: break;
-
-    }
-
-}
-
-void geometricMenu ( int value ) {
-
-    switch ( value ) {
-
-        case 5: {
-
-            if ( shape == 0 ) {
-
-                drawSineWave ( GL_POINTS );
-
-            }
-
-            break;
-
-        }
-
-        case 6: {
-
-            if ( shape == 0 ) {
-
-                drawSineWave ( GL_LINE_STRIP );
-
-            }
-
-            break;
-
-        }
-
-        case 7: {
-
-            if ( shape == 0 ) {
-
-                drawSineWave ( GL_LINE_LOOP );
-
-            }
-
-            break;
-
-        }
-
-        default: break;
-
-    }
-
-}
-
-void mainMenu ( int value ) {
-
-    axisMenu ( value );
-
-    backgroundMenu ( value );
-
-}
-
 void render () {
 
-    drawGrid ( 800, 800, 10 );
+    glClearColor ( bg_color[ 0 ], bg_color[ 1 ], bg_color[ 2 ], bg_color[ 3 ] );
+    glClear ( GL_COLOR_BUFFER_BIT );
 
-    drawSineWave ();
+    drawGrid ( 800, 800, 10, axis_color[ 0 ], axis_color[ 1 ], axis_color[ 2 ] );
 
-    glFlush ();
+    if ( object == 1 ) {
+
+        if ( shape == 0 )
+
+            drawSineWave ( GL_POINTS );
+
+        if ( shape == 1 )
+
+            drawSineWave ( GL_LINE_STRIP );
+
+    } else {
+
+        drawStar ();
+
+    }
+
+    // drawStar ();
+
+    // drawStellarShape ( .1, 0.81, 0.14, 1.0, 5 );
 
 }
 
@@ -166,37 +49,11 @@ int main ( int arg_length, char ** args_context ) {
     glutCreateWindow ( "Simple GL Application" );
 
     // get basic window ready
-    glClearColor ( .5f, .0f, .0f, .8f );
-    glClear ( GL_COLOR_BUFFER_BIT );
     glLoadIdentity (); // reset draw location
-
     gluOrtho2D ( -800, 800, -800, 800 ); // move camera back - can varies by input
     glFlush (); // flush all buffer to gpu
 
-    // create menus
-    int axis_menu = glutCreateMenu ( axisMenu );
-
-    glutAddMenuEntry ( "White Axis", 1 );
-    glutAddMenuEntry ( "Black Axis", 2 );
-
-    int background_color_menu = glutCreateMenu ( backgroundMenu );
-
-    glutAddMenuEntry ( "Default Color", 3 );
-    glutAddMenuEntry ( "Black", 4 );
-
-    int geometric_type = glutCreateMenu ( geometricMenu );
-
-    glutAddMenuEntry ( "Point", 5 );
-    glutAddMenuEntry ( "Line Strip", 6 );
-    glutAddMenuEntry ( "Line Loop", 7 );
-
-    int main_menu = glutCreateMenu ( mainMenu );
-
-    glutAddSubMenu ( "Axis Color", axis_menu );
-    glutAddSubMenu ( "Background Color", background_color_menu );
-    glutAddSubMenu ( "Geometric Type", geometric_type );
-
-    glutAttachMenu ( GLUT_RIGHT_BUTTON );
+    displayMenu ();
 
     // rendering
     glutDisplayFunc ( render );

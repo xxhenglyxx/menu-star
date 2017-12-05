@@ -26,6 +26,33 @@ void drawText (
 
 }
 
+void drawStar (
+
+    const int corners = 6,
+    const int radius = 200
+
+) {
+
+    glBegin ( GL_LINE_LOOP );
+
+        glVertex2i ( 0, 200 );
+        glVertex2i ( -200, -200 );
+        glVertex2i ( 200, -200 );
+
+    glEnd ();
+
+    glBegin ( GL_LINE_LOOP );
+
+        glVertex2i ( 0, -300 );
+        glVertex2i ( -200, 100 );
+        glVertex2i ( 200, 100 );
+
+    glEnd ();
+
+    glFlush ();
+
+}
+
 template < class T >
 void drawGrid (
 
@@ -103,6 +130,26 @@ void drawGrid (
 
     drawText ( "X", 1, 30, 760 );
     drawText ( "Y", 1, 760, 30 ); 
+
+    glFlush ();
+
+}
+
+void drawLinei (
+
+    const int p1,
+    const int p2,
+    const int p3,
+    const int p4
+
+) {
+
+    glBegin ( GL_LINES );
+
+        glVertex2i ( p1, p2 );
+        glVertex2i ( p3, p4 );
+
+    glEnd ();
 
     glFlush ();
 
