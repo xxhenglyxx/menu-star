@@ -26,6 +26,10 @@ void render () {
 
             drawSineWave ( GL_LINE_STRIP );
 
+        if ( shape == 2 )
+
+            drawSineWave ( GL_LINE_LOOP );
+
     } else {
 
         drawStar ();
